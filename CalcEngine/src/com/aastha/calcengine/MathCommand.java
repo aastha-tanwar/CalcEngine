@@ -1,6 +1,6 @@
 package com.aastha.calcengine;
 
-public enum MathCommand {
+ enum MathCommand {                  //no access specifier--can only be used inside package
     Add,
     Subtract,
     Multiply,

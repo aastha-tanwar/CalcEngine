@@ -2,9 +2,12 @@ package com.aastha.myapp;
 
 import com.aastha.calcengine.CalculateBase;
 import com.aastha.calcengine.CalculateHelper;
+import com.aastha.calcengine.DynamicHelper;
 import com.aastha.calcengine.InvalidStatementException;
 import com.aastha.calcengine.MathEquation;
+import com.aastha.calcengine.MathProcessing;
 import com.aastha.calcengine.MethodOverloading;
+import com.aastha.calcengine.PowerOf;
 import com.aastha.calcengine.Subtractor;
 import com.aastha.calcengine.Multiplier;
 import com.aastha.calcengine.Divider;
@@ -34,7 +37,6 @@ public class Main {
 			System.out.println("Error--invalid opCode");
 			result = 0.0d;
 		}
-
 		System.out.println(result);
 
 //	float[] theVals= new float[3];
@@ -161,6 +163,25 @@ public class Main {
 					System.out.println("Original exception:"+ e.getCause().getMessage());
 			}
 
+		}
+
+		//using interfaces and dynamic helper
+		System.out.println("Using interface and dynamic helper:");
+
+		String[] statementsNew={
+				"power 5.0 2.0",  //5.0 ^ 2.0 =25.0
+				"add 23.0 5.0"
+
+		};
+
+		DynamicHelper helperDynamic=new DynamicHelper( new MathProcessing[]{
+				new PowerOf(),
+				new Adder()
+		});
+
+		for (String statement:statementsNew) {
+			String output=helperDynamic.process(statement);
+			System.out.println(output);
 		}
 
 	}
